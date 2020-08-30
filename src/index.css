@@ -1,0 +1,28 @@
+* {
+  margin: 0 ;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,body{
+   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif ;
+   line-height: 1.7em;
+}
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+.item-enter {
+  opacity: 0;
+}
+.item-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+}
