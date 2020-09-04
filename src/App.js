@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
 import './App.css';
 import { connect } from 'react-redux';
-import TodoInput from "./todolist/TodoInput"
-import TodoList from "./todolist/TodoList"
-import { addTodo, fetchTodos, deleteTodo } from "./store/actions/TodoActions"
+import TodoForm from "./todolist/TodoForm"
+import Footer from "./components/Footer"
+
+import { addTodo, fetchTodos, deleteTodo , editTodo } from "./store/actions/TodoActions"
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchTodos()
   }
   render() {
+    const {addTodo,todos,deleteTodo,editTodo}=this.props
     return (
-      <div className="container" style={{ marginTop: "20px" }}>
-        <div className="card row">
-          <TodoInput addTodo={this.props.addTodo}/>
-          <TodoList  deleteTodo={this.props.deleteTodo} todos={this.props.todos}  />
-        </div>
+      <div className="container" style={{ marginTop: "20px" }}>     
+          
+          <TodoForm addTodo={addTodo}   deleteTodo={deleteTodo} todos={todos} editTodo={editTodo}/>          
+          <Footer todos={todos.todos}/>
       </div>
     );
   }
@@ -27,7 +28,7 @@ const mapStateToProps = ({ todos }) => {
 };
 
 const mapDispatchToProps = {
-  addTodo, fetchTodos, deleteTodo
+  addTodo, fetchTodos, deleteTodo,editTodo
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

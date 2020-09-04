@@ -12,6 +12,10 @@ export const DELETE_TODO_FULFILLED = "DELETE_TODO_FULFILLED"
 export const DELETE_TODO_REJECTED = "DELETE_TODO_REJECTED"
 export const DELETE_TODO_PENDING = "DELETE_TODO_PENDING"
 
+export const EDIT_TODO_FULFILLED = "EDIT_TODO_FULFILLED"
+export const EDIT_TODO_REJECTED = "EDIT_TODO_REJECTED"
+export const EDIT_TODO_PENDING = "EDIT_TODO_PENDING"
+
 
 
 export function addTodo(newTodo) {
@@ -41,6 +45,18 @@ export function deleteTodo(id) {
             type: "DELETE_TODO",
             payload: axios.delete(`${API_BASE}/todos/${id}`).then(() =>
                 id)           
+        })
+    }
+}
+export function editTodo(todoUpdate) {   
+    let id = todoUpdate.id
+    let newTodo = {todo:todoUpdate.todo}
+    return dispatch => {     
+        dispatch({
+            type: "EDIT_TODO",
+            payload: axios.put(`${API_BASE}/todos/${id}`,newTodo).then(() =>
+            todoUpdate
+            )           
         })
     }
 }
