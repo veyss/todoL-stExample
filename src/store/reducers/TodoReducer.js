@@ -35,8 +35,7 @@ export default (state = initialState, action) => {
                 fetching: true
 
             };
-        case ADD_TODO_FULFILLED:
-            console.log("REjected", state)
+        case ADD_TODO_FULFILLED:           
             return {
                 ...state,
                 todos: [...state.todos, action.payload],
@@ -75,8 +74,7 @@ export default (state = initialState, action) => {
                 fetching: true
 
             };
-        case EDIT_TODO_FULFILLED:
-            console.log("mmm", state.todos)
+        case EDIT_TODO_FULFILLED:        
             return {
                 ...state,
                 todos: updataTodo(state.todos, action.payload),
@@ -99,15 +97,14 @@ export default (state = initialState, action) => {
 
 
 function updataTodo(todos, payload) {
-    console.log("payload",payload)
     let findindex;
     todos.forEach((todo, index) => {        
         if (todo.id === payload.id) {findindex = index;} 
         
     });
-    console.log("findindex",findindex)
+
     if (findindex !== -1) todos.splice(findindex, 1,payload)
-   console.log("todos",todos)
+   
     return todos
 }
 
